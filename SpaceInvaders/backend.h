@@ -17,9 +17,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-
-
+#define LARGO 16 //el largo de la matriz
+#define ANCHO 16
+#define ENEMY 1
+#define PLAYER 9
+#define MURO 8   
+int exit_cond(void);
+void inimat (int [][ANCHO],int );
+void printmat (int [][ANCHO]);
+void ininav(int[][ANCHO],int);
 
 #ifdef __cplusplus
 }
