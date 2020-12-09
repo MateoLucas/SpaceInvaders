@@ -28,15 +28,18 @@ int main()
     //meterle un define o algo
    //initraspi();//inicializa librerias raspi
     //meterle define
-    int nivel=15;
+    int nivel=1;
+    int direccion=1;//1 derecha, 2 izquierda
     int a=0;
     int space [LARGO][ANCHO];
     inimat(space,a);//inicializo la matriz
     ininav(space,nivel);
     printmat(space);
-   /* do{
-        
+    do{
+        direccion = ciclo(space,direccion);
+        printmat(space);
+        sleep(1);
     }while((exit = exit_cond())!=0);
-*/
+
 return 0;
 }
