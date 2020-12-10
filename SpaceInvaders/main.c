@@ -12,34 +12,38 @@
  * Created on December 3, 2020, 1:22 PM
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
+
+
 #include"backend.h"
 #include"hardware.h"
 #include"allegro.h"
-#include<unistd.h>
-#include<time.h>// uso srand(time(NULL)) para incializar
+
+// uso srand(time(NULL)) para incializar
 //rand() % 10 + 1;10 rango 1 valor inicial
-int main()
-{
+int main(){
+    
+    int vidas =3;
+    int puntaje =0;
     int exit=0;
     //initallegro();//inicializa allegro
     //meterle un define o algo
    //initraspi();//inicializa librerias raspi
     //meterle define
-    int nivel=1;
+    int nivel=1;//-1 para test
     int direccion=1;//1 derecha, 2 izquierda
-    int a=0;
     int space [LARGO][ANCHO];
-    inimat(space,a);//inicializo la matriz
-    ininav(space,nivel);
+    inimat(space);//inicializo la matriz
+    ininiv(space,nivel);
     printmat(space);
     do{
-        direccion = ciclo(space,direccion);
+        direccion = ciclonaves(space,direccion);//mueve las naves enemigas
+        ciclodisp(space,&vidas,&puntaje);//mueve los disparos
+        pmov(space,&puntaje);//mueve y dispara el jugador
+        navdisp(space,&vidas,&puntaje,&nivel);//hace que las naves disparen
+        nivel = verparams(space,nivel);//verifica si pasaste de nivel
         printmat(space);
         sleep(1);
-    }while((exit = exit_cond())!=0);
+    }while((exit = exit_cond(&vidas))!=0);
 
 return 0;
 }
